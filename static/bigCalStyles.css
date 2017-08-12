@@ -18,6 +18,7 @@ button.rbc-input::-moz-focus-inner {
 }
 .rbc-calendar {
   box-sizing: border-box;
+<<<<<<< HEAD
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -32,6 +33,15 @@ button.rbc-input::-moz-focus-inner {
   height: 70%;
   overflow: scroll;
 
+=======
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: stretch;
+      align-items: stretch;
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
 }
 .rbc-calendar *,
 .rbc-calendar *:before,
@@ -82,9 +92,15 @@ button.rbc-input::-moz-focus-inner {
 .rbc-row-content {
   position: relative;
   -webkit-user-select: none;
+<<<<<<< HEAD
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+=======
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
   z-index: 4;
 }
 .rbc-today {
@@ -116,7 +132,10 @@ button.rbc-input::-moz-focus-inner {
   border-radius: 4px;
   line-height: normal;
   white-space: nowrap;
+<<<<<<< HEAD
   cursor: pointer;
+=======
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
 }
 .rbc-toolbar button:active,
 .rbc-toolbar button.rbc-active {
@@ -238,6 +257,7 @@ button.rbc-input::-moz-focus-inner {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
+<<<<<<< HEAD
   flex-direction: column;
   -ms-flex: 1 0 0px;
   /* flex: 1 0 0; */
@@ -247,6 +267,16 @@ button.rbc-input::-moz-focus-inner {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+=======
+      flex-direction: column;
+  -ms-flex: 1 0 0px;
+      flex: 1 0 0;
+  width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
   height: 100%;
 }
 .rbc-month-view .rbc-header {
@@ -270,9 +300,15 @@ button.rbc-input::-moz-focus-inner {
   display: flex;
   position: relative;
   -ms-flex-direction: column;
+<<<<<<< HEAD
   flex-direction: column;
   -ms-flex: 1 0 0px;
   /* flex: 1 0 0; */
+=======
+      flex-direction: column;
+  -ms-flex: 1 0 0px;
+      flex: 1 0 0;
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
   overflow: hidden;
   height: 100%;
 }
@@ -296,9 +332,15 @@ button.rbc-input::-moz-focus-inner {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
+<<<<<<< HEAD
   flex-direction: row;
   -ms-flex: 1 0 0px;
   /* flex: 1 0 0; */
+=======
+      flex-direction: row;
+  -ms-flex: 1 0 0px;
+      flex: 1 0 0;
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
   overflow: hidden;
 }
 .rbc-day-bg + .rbc-day-bg {

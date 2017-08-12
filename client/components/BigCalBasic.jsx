@@ -2,9 +2,13 @@ import React from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import * as CalendarModel from '../models/calendar.js';
+<<<<<<< HEAD
 import FreeTimeSlotsModal from './FreeTimeSlotsModal.jsx';
 import findFreeTimes from '../models/findFreeTimes.js';
 import AddEvent from './AddEvent.jsx';
+=======
+// import events from './events'; old dummy data
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
 
 let allViews = Object.keys(BigCalendar.views).map(k => BigCalendar.views[k])
 
@@ -16,6 +20,7 @@ class BigCalBasic extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+<<<<<<< HEAD
       events: [],
       availableSlots: [],
       displayModal: false,
@@ -23,6 +28,9 @@ class BigCalBasic extends React.Component{
       eventDateTime: undefined,
       eventTitle: '',
       meetingLength: 0
+=======
+      events: []
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
     }
 
     this.renderEventsToCalendar();
@@ -76,6 +84,7 @@ class BigCalBasic extends React.Component{
 
   render(){
     return (
+<<<<<<< HEAD
       <div className="calendar">
         <AddEvent
           user={this.props.user}
@@ -106,6 +115,15 @@ class BigCalBasic extends React.Component{
           />
         }
       </div>
+=======
+      <BigCalendar
+        {...this.props}
+        events={this.state.events}
+        views={allViews}
+        titleAccessor='summary'
+        defaultDate={new Date()}
+      />
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
     )
   }
 }

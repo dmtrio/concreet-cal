@@ -1,11 +1,18 @@
+<<<<<<< HEAD
 
 // controllers to get back calendar data from Google Calendars API
 // see https://docs.google.com/document/d/1Z7jaqjRvIZuvRJZW8X6a3JDIfilJTGclH0C-zYTAq04/edit for
 // walkthrough an examples of response bodies for different API requests
+=======
+// controllers to get back calendar data from Google Calendars API
+// see https://docs.google.com/document/d/1Z7jaqjRvIZuvRJZW8X6a3JDIfilJTGclH0C-zYTAq04/edit for
+// walkthrough an examples of response bodies for different API requests 
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
 
 import $ from 'jquery';
 import moment from 'moment';
 
+<<<<<<< HEAD
 //get data from database since it has the most current values for refresh tokens and access tokens
 
 const checkQueryGroup = (queryGroup, callback) => {
@@ -113,15 +120,45 @@ export const getCalendarEvents = function (currentUser, calendarList, callback) 
 
     var startOfMonth = moment().startOf('month').format("YYYY-MM-DDTHH:mm:ssZ");
     var endOfMonth = moment().endOf('month').format("YYYY-MM-DDTHH:mm:ssZ");
+=======
+// retrieves all calendars for a single user
+export const getCalendarList = (token, callback) => {
+  // token is special key provided by google to identify a user and a session
+  var searchParams = {access_token: token};
+
+  $.get('https://www.googleapis.com/calendar/v3/users/me/calendarList', searchParams, (data) => {
+    // data is an object with an items property that contains an array of calendar data
+    callback(token, data.items);
+  }).fail((err) => {
+    console.log(err);
+  })
+};
+
+export const getCalendarEvents = function (token, calendarList, callback) {
+  for (var calendar of calendarList) {
+
+    // replace any pound sign with its escape character. Pound sign interferes with URL search
+    calendar.id = calendar.id.replace('#', '%23')
+
+    var oneWeekAgo = moment().subtract(1, 'weeks').format("YYYY-MM-DDTHH:mm:ssZ");
+    var oneWeekFromNow = moment().add(1, 'weeks').format("YYYY-MM-DDTHH:mm:ssZ");
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
 
     // params inclue user token, single events to true to avoid returning all recurring events
     // give it a time range from one week ago to one week from now.
     // order by start time(ascending). Earliest event will be 0th element in items array
     var searchParams = {
+<<<<<<< HEAD
       access_token: currentUser.accessToken,
       singleEvents: true,
       timeMin: startOfMonth,
       timeMax: endOfMonth,
+=======
+      access_token: token, 
+      singleEvents: true, 
+      timeMin: oneWeekAgo, 
+      timeMax: oneWeekFromNow, 
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
       orderBy: 'startTime'
     };
 
@@ -129,7 +166,11 @@ export const getCalendarEvents = function (currentUser, calendarList, callback) 
       // data is an object with an items property that contains an array of calendar data
       callback(data.items);
     });
+<<<<<<< HEAD
   // }
+=======
+  }
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
 }
 
 export const processEvents = function (eventsList, callback) {
@@ -140,6 +181,7 @@ export const processEvents = function (eventsList, callback) {
   callback(eventsList);
 }
 
+<<<<<<< HEAD
 
 export const freeBusy = (queryGroup, currentUser, timeMin, timeMax, callback) => {
 
@@ -217,3 +259,52 @@ export const addEvent = (queryGroup, currentUser, title, timeStart, timeEnd, cal
   })
 
 }
+=======
+export const getEventData = (eventInfo, callback) => {
+  // eventData contains token, calendarId, and eventId properties
+  eventInfo.calendarId = 'hackreactor.com_9kddcjfdij7ak91o0t2bdlpnoo@group.calendar.google.com';
+  eventInfo.eventId = 'hmohhg9pjtr795k22mq17eltvk_20170801T223000Z'
+
+  var searchParams = {
+    access_token: eventInfo.token,
+  }
+
+  $.get(`https://www.googleapis.com/calendar/v3/calendars/${eventInfo.calendarId}/events/${eventInfo.eventId}`, searchParams, (data) => {
+    callback(data);
+  });
+};
+
+export const freeBusy = (queryInfo, callback) => {
+  // queryInfo contains token, timeMin, timeMax, and calendar ids
+
+  // dummy data
+  var requestBody = {
+    "items": [
+      {
+        "id": "jordan.n.hoang@gmail.com"
+      },
+      {
+        "id": "hackreactor.com_9kddcjfdij7ak91o0t2bdlpnoo@group.calendar.google.com"
+      }
+    ],
+    "timeMin": "2017-08-01T17:06:02.000Z",
+    "timeMax": "2017-08-09T17:06:02.000Z",
+  }
+  //
+  
+  $.ajax({
+    type: "POST",
+    url: `https://www.googleapis.com/calendar/v3/freeBusy`,
+    headers: {Authorization: `Bearer ${queryInfo.token}`},
+    data: JSON.stringify(requestBody),
+    contentType: 'application/json',
+    dataType: 'json',
+    success: function(data) {
+      // data returns an object with calendars property 
+      // calendars property returns all calendars searched for
+      // each calendar has a busy property with array of busy times
+      callback(data);
+    }
+  })
+};
+>>>>>>> 731b9cdf989930ee1585c03fe2b1fc3959ff37b2
